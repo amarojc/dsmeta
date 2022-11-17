@@ -1,4 +1,4 @@
-package com.devsuperior.dsmeta.controller;
+package com.devsuperior.dsmeta.resource;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -11,11 +11,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.devsuperior.dsmeta.domain.dto.SaleDTO;
 import com.devsuperior.dsmeta.domain.entity.Sale;
-import com.devsuperior.dsmeta.service.SaleService;
+import com.devsuperior.dsmeta.services.SaleService;
 
 @RestController
 @RequestMapping("/sales")
-public class SaleController {
+public class SaleResource {
 
 	@Autowired
 	private SaleService saleService;
