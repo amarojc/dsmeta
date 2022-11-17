@@ -10,6 +10,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.devsuperior.dsmeta.domain.dto.SaleDTO;
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Entity
 @Table(name="tb_sales")
 public class Sale {
@@ -22,7 +25,20 @@ public class Sale {
 	private Integer visited;
 	private Integer deals;
 	private Double amount;
+	@JsonFormat(pattern = "dd/MM/yyyy", locale = "pt-BR")
 	private LocalDate date;
+	
+	
+	public Sale(SaleDTO saleDTO) {
+		super();
+		this.id = saleDTO.getId();
+		this.sellerName = saleDTO.getSellerName();
+		this.visited = saleDTO.getVisited();
+		this.deals = saleDTO.getDeals();
+		this.amount = saleDTO.getAmount();
+		this.date = saleDTO.getDate();
+	}
+	
 	
 	public Sale() {
 		
