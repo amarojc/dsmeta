@@ -26,5 +26,10 @@ public class SaleResource {
 		return ResponseEntity.ok().body(salesDTO); 
 	}
 	
-	
+	@GetMapping("/saless")
+	public ResponseEntity<Page<SaleDTO>> findAllSales(){
+		Page<Sale> sales = saleService.findAllSales();
+		Page<SaleDTO> salesDTO = sales.map(obj -> new SaleDTO(obj));
+		return ResponseEntity.ok().body(salesDTO);
+	}
 }
