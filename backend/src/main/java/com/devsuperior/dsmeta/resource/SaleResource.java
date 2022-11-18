@@ -20,6 +20,18 @@ public class SaleResource {
 	@Autowired
 	private SaleService saleService;
 	
+	@GetMapping
+	public ResponseEntity<Page<SaleDTO>> findSales(
+			@RequestParam(value = "minDate", defaultValue = "") String minDate,
+			@RequestParam(value = "maxDate", defaultValue = "") String maxDate,
+			Pageable pageable){
+		Page<Sale> sales = saleService.findSales(minDate, maxDate, pageable);
+		Page<SaleDTO> salesDTO = sales.map(obj -> new SaleDTO(obj));
+		return ResponseEntity.ok().body(salesDTO);
+		
+	}
+	
+	
 	@GetMapping("/sales")
 	public ResponseEntity<Page<SaleDTO>> findAll(Pageable pageable){
 		Page<Sale> sales = saleService.findAll(pageable);
