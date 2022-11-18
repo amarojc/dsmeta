@@ -1,9 +1,8 @@
 package com.devsuperior.dsmeta.resource;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,18 +13,18 @@ import com.devsuperior.dsmeta.domain.entity.Sale;
 import com.devsuperior.dsmeta.services.SaleService;
 
 @RestController
-@RequestMapping("/sales")
+@RequestMapping("/sale")
 public class SaleResource {
 
 	@Autowired
 	private SaleService saleService;
 	
-	@GetMapping()
-	public ResponseEntity<List<SaleDTO>> findAll(){
-		List<Sale> sales = saleService.findAllSales();
-		List<SaleDTO> salesDTO = sales.parallelStream()
-				.map(obj -> new SaleDTO(obj))
-				.collect(Collectors.toList());
+	@GetMapping("/sales")
+	public ResponseEntity<Page<SaleDTO>> findAll(Pageable pageable){
+		Page<Sale> sales = saleService.findAll(pageable);
+		Page<SaleDTO> salesDTO = sales.map(obj -> new SaleDTO(obj));
 		return ResponseEntity.ok().body(salesDTO); 
 	}
+	
+	
 }
