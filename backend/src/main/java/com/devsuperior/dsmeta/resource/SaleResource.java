@@ -6,6 +6,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.devsuperior.dsmeta.domain.dto.SaleDTO;
@@ -31,5 +32,17 @@ public class SaleResource {
 		Page<Sale> sales = saleService.findAllSales();
 		Page<SaleDTO> salesDTO = sales.map(obj -> new SaleDTO(obj));
 		return ResponseEntity.ok().body(salesDTO);
+	}
+	
+	@GetMapping("/seller")
+	public ResponseEntity<Page<SaleDTO>> searchSeller(
+			@RequestParam(value="searchSeller") String searchSeller,
+			@RequestParam(value="page", required = false, defaultValue = "0") int page,
+			@RequestParam(value="size", required = false, defaultValue = "10") int size){
+		
+		Page<Sale> sales = saleService.searchSeller(searchSeller, page, size);
+		Page<SaleDTO> salesDTO = sales.map(obj -> new SaleDTO(obj));
+		
+		return ResponseEntity.ok().body(salesDTO); 
 	}
 }

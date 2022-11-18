@@ -29,4 +29,9 @@ public class SaleService {
 		PageRequest pageRequest = PageRequest.of(page, size, Sort.Direction.ASC, "sellerName");
 		return new PageImpl<>(saleRepository.findAll(), pageRequest, size);
 	}
+	
+	public Page<Sale> searchSeller(String seller, int page, int size){
+		PageRequest pageRequest = PageRequest.of(page, size, Sort.Direction.DESC, "date");
+		return saleRepository.searchSeller(seller.toLowerCase(), pageRequest);
+	}
 }
