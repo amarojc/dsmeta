@@ -19,13 +19,14 @@ public class SmsService {
 	private String twilioSid;
 
 	@Value("${twilio.key}")
-	private String twiliokey;
-	
+	private String twilioKey;
+
 	@Value("${twilio.phone.from}")
 	private String twilioPhoneFrom;
-	
+
 	@Value("${twilio.phone.to}")
 	private String twilioPhoneTo;
+
 	
 	@Autowired
 	private SaleRepository saleRepository;
@@ -40,7 +41,7 @@ public class SmsService {
 		+ " foi destaque em " + date + " com um total de R$ " + number
 		+ " em vendas.";
 		
-		Twilio.init(twilioSid, twiliokey);
+		Twilio.init(twilioSid, twilioKey);
 		
 		PhoneNumber to = new PhoneNumber(twilioPhoneTo);
 		PhoneNumber from = new PhoneNumber(twilioPhoneFrom);

@@ -1,5 +1,6 @@
 package com.devsuperior.dsmeta.resource;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -16,7 +17,7 @@ import com.devsuperior.dsmeta.services.SaleService;
 import com.devsuperior.dsmeta.services.SmsService;
 
 @RestController
-@RequestMapping("/sale")
+@RequestMapping(value = "/sale")
 public class SaleResource {
 
 	@Autowired
