@@ -1,5 +1,7 @@
 package com.devsuperior.dsmeta.services;
 
+import java.text.DecimalFormat;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -35,20 +37,21 @@ public class SmsService {
 		Sale sale = saleRepository.findById(SaleId).get();
 		
 		String date = sale.getDate().getMonthValue() + "/" + sale.getDate().getYear(); 
-		String number = String.format("%.2f", sale.getAmount());
 		
-		String  msg = "O Vendedor " + sale.getSellerName() 
-		+ " foi destaque em " + date + " com um total de R$ " + number
-		+ " em vendas.";
+		StringBuilder msg = new StringBuilder(); 
 		
+	    msg.append(String.format("O vendedor %s foi destaque em  %s com um total de R$ %.2f",
+				sale.getSellerName(), date, sale.getAmount()));
+		
+			
 		Twilio.init(twilioSid, twilioKey);
 		
 		PhoneNumber to = new PhoneNumber(twilioPhoneTo);
 		PhoneNumber from = new PhoneNumber(twilioPhoneFrom);
 		
-		Message message = Message.creator(to, from, msg).create();
+		Message message = Message.creator(to, from, msg.toString()).create();
 		
-		System.out.println(message.getSid());
+		System.out.println("SMS-" + message.getSid());
 	}
 	
 }
