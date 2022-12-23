@@ -27,6 +27,8 @@ para o vendedor, informando o valor de suas vendas e que ele foi destaque de ven
 * useEffect
 * Toast para interagir com usuário
 
+https://dsmeta-sale-amaro.netlify.app/
+
 ## Postman
 * Testes Rest API
 
