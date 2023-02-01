@@ -1,0 +1,117 @@
+{
+	"info": {
+		"_postman_id": "5d823f0d-81e9-403f-814c-002f1f0ef81b",
+		"name": "sale",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22656568"
+	},
+	"item": [
+		{
+			"name": "findAll",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{local}}/sale/sales",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"sale",
+						"sales"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "findAllSaleSeller",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{local}}/sale/seller?searchSeller=Chaves",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"sale",
+						"seller"
+					],
+					"query": [
+						{
+							"key": "searchSeller",
+							"value": "Chaves"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "findAllSales",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{local}}/sale/saless",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"sale",
+						"saless"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "findSales",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{local}}/sale?minDate=2021-11-01&maxDate=2021-12-31",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"sale"
+					],
+					"query": [
+						{
+							"key": "minDate",
+							"value": "2021-11-01"
+						},
+						{
+							"key": "maxDate",
+							"value": "2021-12-31"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SmsNotification",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{local}}/sale/sms/53/notification",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"sale",
+						"sms",
+						"53",
+						"notification"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
